@@ -16,7 +16,11 @@
 
 .cardImg {
   width: 100%;
+<<<<<<< HEAD
+  height: 220px;
+=======
   height: 260px;
+>>>>>>> main
   object-fit: cover;
   transition: transform 0.3s ease, filter 0.3s ease; /* Animation pour l'image */
 }

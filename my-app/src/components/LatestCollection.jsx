@@ -10,7 +10,7 @@ function LatestCollection() {
   return (
     <div className='Content'>
       <h1>LATEST COLLECTION</h1>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam velit architecto sunt</p>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae, temporibus!</p>
       <div className="product">
         {lastProduct.map((product) => (
           <Card 
