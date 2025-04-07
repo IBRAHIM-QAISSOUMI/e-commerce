@@ -1,0 +1,7 @@
+.hero {
+    width: 90%;
+    max-width: 1400px;
+    margin: auto;
+    flex-direction: column;
+    height: auto;
+}
