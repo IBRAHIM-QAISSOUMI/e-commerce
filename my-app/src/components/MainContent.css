@@ -35,11 +35,15 @@
     object-fit: cover;
     display: block;
 }
-.sideLeft p::after {
-    content: "";
-    display: block;
-    width: 30%;
+ .titlePer{
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+ }
+
+.titleBordre {
+    width: 50px;
     height: 3px;
-    background-color: black;
-    margin-top: 5px;
+    background-color: black;   
+    margin: 0 10px;
 }
