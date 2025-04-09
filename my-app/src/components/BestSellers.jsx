@@ -1,9 +1,19 @@
-import { useState, useEffect, useContext } from 'react';
+import { useContext} from 'react';
+import { useNavigate } from 'react-router-dom';
 import Card from './Card';
 import ProductsContext from '../Context/CreateContext';
 
 function BestSellers() {
+  const navigate = useNavigate()
   const products = useContext(ProductsContext);
+
+  const handleClickNavigate = (product) => {
+    navigate('/product', {state: product})
+  }
+
+  const handleClick = () => {
+    navigate('/collection')
+  }
 
   return (
     <div className="Content">
@@ -18,9 +28,11 @@ function BestSellers() {
               image={product.image[0]}
               price={product.price}
               name={product.name}
+              onClick={()=> {handleClickNavigate(product)}}
             />
           ))}
       </div>
+      <button onClick={()=>handleClick()} className='view-more'>View more</button>
     </div>
   );
 }

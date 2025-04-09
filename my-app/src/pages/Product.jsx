@@ -1,39 +1,48 @@
-import React from 'react';
+import React, {useState} from 'react';
+import { useLocation } from 'react-router-dom';
 import './Product.css';
-import img from '../assets/frontend_assets/p_img2_1.png'
 
 export default function Product() {
+  const location = useLocation()
+  const { state } = location;
+  const product = state
+  const [image, setImage] = useState(product.image[0])
+  console.log(state.price)
+
+
+  const handleClickImage = (img)=> {
+    setImage(img)
+  }
+
+
+
+
+
+
+
   return (
     <div>
       <div className='content'>
         <div className="images">
-          <img src={img} className="image"/>
           <div className="list-images">
-            <img src={img}/>
-            <img src={img}/>
-            <img src={img}/>
-            <img src={img}/>
+          {product.image.map((img, index)=> <img key={index} src={img} onClick={()=>{handleClickImage(img)}}/>)}
           </div>
+          <img src={image} className="image"/>
         </div>
 
         <div className="details-product">
-          <h3 className="product-title">Men Round Neck Pure Cotton T-shirt</h3>
+          <h3 className="product-title">{product.name}</h3>
 
           <div className="reviews">
             <span className="stars">★★★★☆</span>
             <span className="count">(122)</span>
           </div>
-
-          <h2 className="prix">$80</h2>
-
-          <div className="description">
-            A lightweight, usually knitted, pullover shirt, close-fitting and with a round neckline and short sleeves, worn as an undershirt or outer garment.
-          </div>
-
+          <h2 className="prix">${product.price}</h2>
+          <div className="description"> {product.description} </div>
           <div className="size">
             <h4>Select Size</h4>
             <div className="size-options">
-              {["S", "M", "L", "XL", "XXL"].map((size) => (
+              {product.sizes.map((size) => (
                 <button key={size} className="size-btn">{size}</button>
               ))}
             </div>

@@ -1,5 +1,6 @@
 .cardContent {
-  width: 250px;
+  width: 255px;
+  height: 380px;
   background-color: #ffffff;
   border-radius: 16px;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
@@ -8,6 +9,7 @@
   font-family: 'Segoe UI', sans-serif;
   cursor: pointer;
   text-align: center;
+  transition: 0.3s ease;
 }
 
 .cardContent:hover {
@@ -16,28 +18,43 @@
 
 .cardImg {
   width: 100%;
-<<<<<<< HEAD
-  height: 220px;
-=======
-  height: 260px;
->>>>>>> main
   object-fit: cover;
-  transition: transform 0.3s ease, filter 0.3s ease; /* Animation pour l'image */
+  transition: transform 0.3s ease, filter 0.3s ease;
 }
 
+
 .cardContent:hover .cardImg {
-  transform: scale(1.1); /* Agrandir l'image au survol */
-  filter: brightness(80%); /* Assombrir l'image au survol */
+  transform: scale(1.1); 
+  filter: brightness(80%);
+}
+
+.cardInfo {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .cardName {
-  font-size: 1rem;
+  font-size: 0.92rem;
   color: #555;
-  margin: 12px 0;
+  margin: 12px 0 0px;
+  /* background-color: red; */
 }
 
 .cardPrix {
   font-size: 1.2rem;
   font-weight: bold;
   color: dark;
+  margin-top: 10px;
+}
+
+@media (max-width: 650px) {
+  .cardContent {
+    width: 300px;
+    height: 420px;
+  }  
+
+  .cardPrix {
+    margin-top: 5px;
+  }
 }

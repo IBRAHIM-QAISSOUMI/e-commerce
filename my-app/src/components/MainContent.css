@@ -3,7 +3,6 @@
     justify-content: center;
     align-items: center;
     margin: auto;
-    height: 65vh;
     margin-top: 4;
     border: 0.1px solid rgb(160, 158, 158); 
     /* box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3); */
@@ -35,11 +34,39 @@
     object-fit: cover;
     display: block;
 }
-.sideLeft p::after {
-    content: "";
-    display: block;
-    width: 30%;
+ .titlePer{
+    display: flex;
+    justify-content: center; 
+    align-items: center;
+ }
+
+.titleBordre {
+    width: 50px;
     height: 3px;
-    background-color: black;
-    margin-top: 5px;
+    background-color: black;   
+    margin: 0 10px;
+}
+
+/* responsive main */
+@media (max-width: 768px) {
+    .sideContent {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .sideLeft {
+        order: 1;
+    }
+
+    .sideRight{
+    }
+
+    .headerSection {
+        text-align: center;
+    }
+
+    .img {
+        object-fit: cover;
+    
+    }
 }
