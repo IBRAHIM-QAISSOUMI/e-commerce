@@ -13,6 +13,7 @@ import NotFound from './pages/NotFound';
 import Navbar from './components/Navbar';
 import ProductsContext from './Context/CreateContext';
 import {products} from './assets/frontend_assets/assets'
+import Footer from './components/Footer';
 
 function App() {
   const location = useLocation();
@@ -42,7 +43,9 @@ function App() {
         <Route path="collection" element={<Collection />} />
         <Route path="orders" element={<Orders />} />
         <Route path="placeOrder" element={<PlaceOrder />} />
+        {/* <Route path="footer" element={} /> */}
       </Routes>
+      <Footer/>
     </ProductsContext>
   );
 }

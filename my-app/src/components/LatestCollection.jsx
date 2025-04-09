@@ -7,12 +7,16 @@ import ProductsContext from '../Context/CreateContext';
 function LatestCollection() {
   const products = useContext(ProductsContext);
   const navigate = useNavigate();
-  const lastProduct = [...products].sort((a, b) => b.date - a.date).slice(0, 10);
+  const lastProduct = [...products].sort((a, b) => b.date - a.date).slice(0, 8);
   // const readableDate = new Date(product.date).toLocaleDateString();
 
 
   const handleClickNavigate = (product) => {
     navigate('/product', {state: product})
+  }
+
+  const handleClick = () => {
+    navigate('/collection')
   }
 
 
@@ -31,6 +35,7 @@ function LatestCollection() {
           />
         ))}
       </div>
+      <button onClick={()=>handleClick()} className='view-more'>View more</button>
     </div>
   );
 }

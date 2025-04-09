@@ -1,24 +1,33 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { useLocation } from 'react-router-dom';
 import './Product.css';
-import img from '../assets/frontend_assets/p_img2_1.png'
 
 export default function Product() {
   const location = useLocation()
   const { state } = location;
   const product = state
+  const [image, setImage] = useState(product.image[0])
   console.log(state.price)
+
+
+  const handleClickImage = (img)=> {
+    setImage(img)
+  }
+
+
+
+
+
+
+
   return (
     <div>
       <div className='content'>
         <div className="images">
           <div className="list-images">
-            <img src={img}/>
-            <img src={img}/>
-            <img src={img}/>
-            <img src={img}/>
+          {product.image.map((img, index)=> <img key={index} src={img} onClick={()=>{handleClickImage(img)}}/>)}
           </div>
-          <img src={product.image[0]} className="image"/>
+          <img src={image} className="image"/>
         </div>
 
         <div className="details-product">

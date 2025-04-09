@@ -8,8 +8,8 @@ function MainContent() {
       <div className="sideLeft">
         <div className='titlePer' > 
           <div className='titleBordre'></div>
-          <p> OUR BESTSELLRS</p>
-        </div>
+            <p> OUR BESTSELLRS</p>
+          </div>
         <h1 className='headerSection'>Latest Arrivals</h1>
         <div className='titlePer' > 
           <p>SHOP NOW</p>

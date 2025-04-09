@@ -11,6 +11,10 @@ function BestSellers() {
     navigate('/product', {state: product})
   }
 
+  const handleClick = () => {
+    navigate('/collection')
+  }
+
   return (
     <div className="Content">
       <h1>BEST SELLERS</h1>
@@ -28,6 +32,7 @@ function BestSellers() {
             />
           ))}
       </div>
+      <button onClick={()=>handleClick()} className='view-more'>View more</button>
     </div>
   );
 }
