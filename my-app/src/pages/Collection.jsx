@@ -68,7 +68,7 @@ function Collection() {
       {/* ------------------------aside left */}
       <div className="aside-left">
         <h2 className="head">FILTERS</h2>
-
+        <div className="container-filter">
         <div className="filter">
           <h4>CATEGORIES</h4>
           <div className="input">
@@ -100,6 +100,8 @@ function Collection() {
             <label htmlFor="Winterwear">Winterwear</label>
           </div>
         </div>
+        </div>
+
       </div>
       {/* aside left -----------------------------*/}
 

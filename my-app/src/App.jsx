@@ -14,12 +14,14 @@ import Navbar from './components/Navbar';
 import ProductsContext from './Context/CreateContext';
 import {products} from './assets/frontend_assets/assets'
 import Footer from './components/Footer';
+import Help from './components/Help';
 
 function App() {
   const location = useLocation();
 
   // Navbar
-  const showNavbar = location.pathname !== '/notfound' && location.pathname !== '/login';
+  const showNavbar = location.pathname !== '/notfound' && location.pathname !== '/login' && location.pathname !=='/help';
+  const showFooter = location.pathname !== '/notfound' && location.pathname !== '/login' && location.pathname !=='/help';
 
   // api des produits
   const [data ,setDate] = useState([])
@@ -43,9 +45,10 @@ function App() {
         <Route path="collection" element={<Collection />} />
         <Route path="orders" element={<Orders />} />
         <Route path="placeOrder" element={<PlaceOrder />} />
-        {/* <Route path="footer" element={} /> */}
+        <Route path="help" element={<Help/>} />
       </Routes>
-      <Footer/>
+      {showFooter && <Footer/>}
+      
     </ProductsContext>
   );
 }

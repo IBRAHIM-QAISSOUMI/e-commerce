@@ -1,14 +1,17 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import { useLocation } from 'react-router-dom';
 import './Product.css';
+import RelatedProducts from '../components/RelatedProducts';
 
 export default function Product() {
   const location = useLocation()
   const { state } = location;
   const product = state
-  const [image, setImage] = useState(product.image[0])
-  console.log(state.price)
-
+  const [image, setImage] = useState('')
+  
+  useEffect(()=> {
+    setImage(product.image[0])
+  }, product)
 
   const handleClickImage = (img)=> {
     setImage(img)
@@ -21,7 +24,7 @@ export default function Product() {
 
 
   return (
-    <div>
+    <div className='product-page'>
       <div className='content'>
         <div className="images">
           <div className="list-images">
@@ -57,6 +60,7 @@ export default function Product() {
           </div>
         </div>
       </div>
+      <RelatedProducts product={product}/>
     </div>
   );
 }

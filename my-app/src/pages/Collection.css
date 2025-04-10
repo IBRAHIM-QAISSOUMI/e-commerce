@@ -21,7 +21,6 @@
     flex-direction: column;
     gap: 10px;
     margin-bottom: 20px;
-    
 }
 
 .filter h4{
@@ -63,4 +62,42 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 20px;
+}
+
+@media (max-width: 768px) {
+    .collection-content {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .aside-left {
+        margin: auto;
+    }
+
+    .container-filter {
+        display: flex;
+        gap: 40px;
+
+
+    }
+
+    .filter {
+        width: 200px;
+    }
+
+}
+
+@media (max-width: 550px) {
+    .filter {
+        width: 120px;
+    }
+
+    .topBarCollection h1{
+        font-size: 1.2rem;
+    }
+
+    .topBarCollection select {
+        width: 130px;
+        font-size: 0.7rem;
+    } 
 }
