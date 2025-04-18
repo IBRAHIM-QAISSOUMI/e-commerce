@@ -38,7 +38,7 @@ function Singup() {
           <form className='login-form' 
           onSubmit={singup}
           >
-          <h2>Sing Up</h2>
+          <h2 className='login-title'>Sing Up</h2>
             <input
               type="text"
               placeholder="Name"
@@ -66,7 +66,7 @@ function Singup() {
                         style={{
                           position: 'absolute',
                           right: 15,
-                          top: '40%',
+                          top: '70%',
                           transform: 'translateY(-50%)',
                           cursor: 'pointer'
                         }}

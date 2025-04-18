@@ -23,7 +23,7 @@
 .login-form input {
     outline: none;
     padding: 12px;
-    margin-bottom: 20px;
+    margin-top: 20px;
     font-size: 14px;
 }
 
@@ -43,8 +43,13 @@
 }
 
 .login-form .liens {
-    margin-top: -18px;
+    /* background-color: red; */
+    /* margin-top: -10px; */
     font-size: 13px;
+}
+
+.login-title{
+    margin-bottom: 8px;
 }
 
 
@@ -58,8 +63,7 @@
 
 .error {
     color: red;
-    margin-top: -20px;
-    margin-bottom: 20px;
+    margin-top: 0px;
     font-size: 0.70rem;
 
 }

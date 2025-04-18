@@ -1,22 +1,23 @@
 import React, { useEffect, useState } from 'react';
-import {useUser} from '../hooks/useUser';
+import useUser from '../hooks/useUser';
 import './Cart.css'
 
 export default function Cart() {
   const [cartProducts, setCartProducts] = useState([]);
+  const user = useUser()
   
 
 
-    const getUser = async () => {
-      const {data} = useUser();
-      if (data) {
-          setUserData(data)
-      }
-    }
+    // const getUser = async () => {
+    //   const {data} = useUser();
+    //   if (data) {
+    //       setUserData(data)
+    //   }
+    // }
   
-    useEffect(async() => {
-      getUser()
-    }, []);
+    // useEffect(async() => {
+    //   getUser()
+    // }, []);
 
   useEffect(() => {
     const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
@@ -42,6 +43,9 @@ export default function Cart() {
       return acc + product.price * quantity;
     }, 0);
   };
+
+  console.log(user);
+  
 
   return (
     <div className="cart-page">

@@ -1,42 +1,30 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import axiosClient from '../components/axiosClient';
-import './Profile.css'
-import {useUser} from '../hooks/useUser';
-
+import './Profile.css';
+import useUser from '../hooks/useUser';
 
 function Profile() {
-  const [userData, setUserData] = useState({});
-
-  const getUser = async () => {
-    const {data} = await useUser();
-    console.log(data);
-    if (data) {
-        setUserData(data)
-    }
-  }
-
-  useEffect(async() => {
-    getUser()
-  }, []);
+  const navigate = useNavigate()
+  const user = useUser();
 
   const logout = async () => {
     try {
       await axiosClient.post('/api/logout');
       localStorage.removeItem('token');
-      window.location.href = '/login';
+      navigate('/login');
     } catch (error) {
       console.log('Logout failed', error);
     }
   };
-  
 
   return (
     <div className='profile-content'>
       <h2 className='profile-title'>Your Profile</h2>
-      {userData.name ? (
+      {user ? (
         <div>
-          <p>welcome to back {userData.name}</p>
-          <button className='logout' onClick={()=> logout()}>Logout</button>
+          <p>Welcome to back {user.name}</p>
+          <button className='logout' onClick={logout}>Logout</button>
         </div>
       ) : (
         <p>Loading...</p>

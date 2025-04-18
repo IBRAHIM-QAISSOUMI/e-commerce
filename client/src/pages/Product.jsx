@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import './Product.css';
 import RelatedProducts from '../components/RelatedProducts';
-import {useUser} from '../hooks/useUser';
+import useUser from '../hooks/useUser';
 
 export default function Product() {
   const [selectedSize, setSelectedSize] = useState(null);
@@ -11,6 +11,7 @@ export default function Product() {
   const { state } = location;
   const [product, setProduct] = useState(state)
   const [image, setImage] = useState(state.image[0])
+  const user = useUser()
   
   useEffect(()=> {
     setProduct(state)
@@ -27,11 +28,9 @@ export default function Product() {
   const handleClickToCart = async (product) => {
     if (selectedSize === null) {
       alert('champ size obligatoire')
-    } else{
-        alert('please login')
-        const {data} = await useUser();
-        console.log(data);
-        
+    } else if(!user) {
+      user
+  } else if (user) {
         const cart = JSON.parse(localStorage.getItem('cart')) || [];
         const productToAdd = { ...product, selectedSize };
         cart.push(productToAdd);

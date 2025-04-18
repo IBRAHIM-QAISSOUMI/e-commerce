@@ -40,7 +40,7 @@ function Login() {
   return (
     <div className='login-content'> 
       <form className='login-form' onSubmit={login}>
-        <h2>Login</h2>
+        <h2  className='login-title'>Login</h2>
 
         <input
           type="email"
@@ -63,7 +63,7 @@ function Login() {
             style={{
               position: 'absolute',
               right: 15,
-              top: '40%',
+              top: '70%',
               transform: 'translateY(-50%)',
               cursor: 'pointer'
             }}
