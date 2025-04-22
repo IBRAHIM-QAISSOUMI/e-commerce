@@ -1,0 +1,103 @@
+.add-items-content {
+    margin-left: 30px;
+    margin-top: -10px;
+}
+
+
+.list-add-images {
+     margin-top: 10px;
+     display: flex;
+     gap: 5px;
+}
+
+.Add-image {
+    height: 100px;
+    width: 120px;
+    cursor: pointer;
+}
+
+.input-content-admin {
+    display: flex;
+    flex-direction: column;
+    margin: 12px 0;
+    gap: 10px;
+}
+
+.input-admin {
+    width: 40%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    outline: none;
+  }
+  
+  .input-admin:focus {
+    border-color: #007BFF;
+    background-color: #e6f7ff;
+  }
+  
+
+.select-group {
+    display: flex;
+    gap: 25px;
+    margin-bottom: 20px;
+}
+
+.select-content {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.select-content  select{
+    padding: 8px 10px;
+    font-size: 15px;
+}
+.select-content  input{
+    padding: 8px 10px;
+    font-size: 15px;
+}
+
+
+.sizes-container {
+    display: flex;
+    gap: 10px;
+    margin: 10px 0;
+  }
+  
+  .size-button {
+    padding: 10px 15px;
+    border: 1px solid #ccc;
+    background-color: #f7f7f7;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s, border-color 0.3s;
+  }
+  
+  .size-button:hover {
+    background-color: #e2e2e2;
+  }
+  
+  .size-button.selected {
+    background-color: #333;
+    color: #fff;
+    border-color: #333;
+  }
+
+  .Add-product {
+    padding: 10px;
+    width: 80px;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    font-size: 16px;
+    margin-top: 15px;
+    cursor: pointer;
+  }
+  
+  .Add-product:hover{
+    background-color: #333;
+  }

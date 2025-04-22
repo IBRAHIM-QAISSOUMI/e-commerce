@@ -1,0 +1,20 @@
+.admin-panel-content {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    margin:0 50px;
+  }
+  
+  .admin-main-content {
+    display: flex;
+    flex: 1;
+  }
+  
+  .admin-page-content {
+    flex: 1;
+    padding: 20px;
+    /* background-color: #f5f5f5; */
+    border-left: 1px gray solid;
+    margin-left: 5px;
+  }
+  

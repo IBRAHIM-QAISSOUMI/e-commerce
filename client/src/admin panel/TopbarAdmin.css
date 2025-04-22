@@ -1,0 +1,26 @@
+.admin-panel-topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px 20px;
+    border-bottom: 0.2px solid gray;
+}
+
+.admin-logo {
+    height: 60px;
+    cursor: pointer;
+}
+
+.admin-panel-logout {
+    padding: 10px 25px;
+    border: none;
+    border-radius: 20px;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.admin-panel-logout:hover{
+    background-color: #333;
+}

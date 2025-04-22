@@ -5,7 +5,7 @@ import Home from './pages/home';
 import Contact from './pages/contact';
 import Product from './pages/Product';
 import Login from './pages/Login';
-import Cart from './pages/cart';
+import Cart from './pages/Cart';
 import Collection from './pages/Collection';
 import Orders from './pages/Orders';
 import PlaceOrder from './pages/placeOrder';
@@ -17,13 +17,17 @@ import Footer from './components/Footer';
 import Help from './components/Help';
 import Singup from './pages/Singup';
 import Profile from './pages/Profile';
+import AdminLayout from './admin panel/AdminLayout';
+import AddItemsAdmin from './admin panel/AddItemsAdmin';
+import ListItemsAdmin from './admin panel/ListItemsAdmin';
+import OrdersAdmin from './admin panel/OrdersAdmin';
 
 function App() {
   const location = useLocation();
 
   // Navbar
-  const showNavbar = location.pathname !== '/notfound' && location.pathname !=='/help';
-  const showFooter = location.pathname !== '/notfound' && location.pathname !=='/help';
+  const showNavbar = location.pathname !== '/notfound' && location.pathname !=='/help' && location.pathname !=='/adminPanel' && location.pathname !=='/addItems' && location.pathname !=='/listItems' && location.pathname !=='/ordersAdmin';
+  const showFooter = location.pathname !== '/notfound' && location.pathname !=='/help' && location.pathname !=='/adminPanel' && location.pathname !=='/addItems' && location.pathname !=='/listItems' && location.pathname !=='/ordersAdmin';
 
   // api des produits
   const [data ,setDate] = useState([])
@@ -35,7 +39,6 @@ function App() {
   return (
     <ProductsContext value={products}>
       {showNavbar && <Navbar />}
-      
       <Routes>
         <Route path="*" element={<NotFound />} />
         <Route path="/" element={<Home />} />
@@ -50,9 +53,13 @@ function App() {
         <Route path="orders" element={<Orders />} />
         <Route path="placeOrder" element={<PlaceOrder />} />
         <Route path="help" element={<Help/>} />
+        <Route path="NotFound" element={<NotFound/>} />
+        <Route path="adminPanel" element={<AddItemsAdmin/>}/>
+        <Route path="addItems" element={<AddItemsAdmin/>}/>
+        <Route path="listItems" element={<ListItemsAdmin/>}/>
+        <Route path="ordersAdmin" element={<OrdersAdmin/>}/>
       </Routes>
-      {showFooter && <Footer/>}
-      
+      {showFooter && <Footer/>} 
     </ProductsContext>
   );
 }

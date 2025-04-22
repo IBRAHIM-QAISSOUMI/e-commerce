@@ -38,7 +38,7 @@ function Singup() {
           <form className='login-form' 
           onSubmit={singup}
           >
-          <h2 className='login-title'>Sing Up</h2>
+          <h2 className=''>Sing Up</h2>
             <input
               type="text"
               placeholder="Name"

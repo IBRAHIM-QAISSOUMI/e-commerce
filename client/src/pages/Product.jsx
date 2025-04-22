@@ -11,7 +11,7 @@ export default function Product() {
   const { state } = location;
   const [product, setProduct] = useState(state)
   const [image, setImage] = useState(state.image[0])
-  const user = useUser()
+  // const user = useUser()
   
   useEffect(()=> {
     setProduct(state)
@@ -25,19 +25,19 @@ export default function Product() {
     setSelectedSize(size);
   };
 
-  const handleClickToCart = async (product) => {
-    if (selectedSize === null) {
-      alert('champ size obligatoire')
-    } else if(!user) {
-      user
-  } else if (user) {
-        const cart = JSON.parse(localStorage.getItem('cart')) || [];
-        const productToAdd = { ...product, selectedSize };
-        cart.push(productToAdd);
-        localStorage.setItem('cart', JSON.stringify(cart));
-        // alert('product in your cart')
-  }
-  };
+  // const handleClickToCart = async (product) => {
+  //   if (selectedSize === null) {
+  //     alert('champ size obligatoire')
+  //   } else if(!user) {
+  //     user
+  // } else if (user) {
+  //       const cart = JSON.parse(localStorage.getItem('cart')) || [];
+  //       const productToAdd = { ...product, selectedSize };
+  //       cart.push(productToAdd);
+  //       localStorage.setItem('cart', JSON.stringify(cart));
+  //       // alert('product in your cart')
+  // }
+  // };
   
 
 
