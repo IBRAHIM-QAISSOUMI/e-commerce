@@ -8,20 +8,28 @@ use App\Models\User;
 class Product extends Model
 {
     protected $fillable = [
-        'user_id',
         'name',
         'description',
-        'price',
-        'image',
         'category',
         'subCategory',
+        'price',
         'sizes',
-        'date',
-        'bestseller',
+        'bestSeller',
+        'image1',
+        'image2',
+        'image3',
+        'image4',
     ];
+    
 
     public function users() 
     {
         return $this->belongsToMany(User::class);
     }
+
+    public function cartItems()
+    {
+        return $this->hasMany(Cart::class);
+    }
+
 }

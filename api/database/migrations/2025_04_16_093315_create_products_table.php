@@ -15,15 +15,18 @@ return new class extends Migration
         $table->id();
         $table->string('name');
         $table->text('description');
-        $table->integer('price');
-        $table->string('image');
+        $table->decimal('price', 8, 2);
+        $table->string('image1')->nullable();
+        $table->string('image2')->nullable();
+        $table->string('image3')->nullable();
+        $table->string('image4')->nullable();
         $table->string('category');
         $table->string('subCategory');
-        $table->string('sizes');
-        $table->date('date');
-        $table->boolean('bestseller');
+        $table->json('sizes');
+        $table->boolean('bestseller')->default(false);
         $table->timestamps();
     });
+    
 }
 
 
