@@ -1,0 +1,44 @@
+.subscribe-content {
+    margin: 100px 0;
+    text-align: center;
+
+}
+
+.subscribe-content h1{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 1.4rem;
+}
+
+.subscribe-content p{
+    margin: 25px 0;
+    font-size: 0.9rem;
+    color: gray;
+}
+
+.input-subscribe-content {
+    display: flex;
+    margin: auto;
+    justify-content: center;
+
+}
+
+.input-subscribe-content input{
+    padding: 15px 20px;
+    width: 400px;
+    border: 0.5px solid #ccc;
+}
+
+.input-subscribe-content input:focus{
+    border: none;
+}
+
+
+.input-subscribe-content button{
+    padding: 15px 20px;
+    background-color: black;
+    color: white;
+    outline: none;
+    border: none;
+    cursor: pointer;
+}
+
