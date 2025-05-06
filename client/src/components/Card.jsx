@@ -9,6 +9,7 @@ function Card(props) {
         <div className="cardInfo">
           <p className='cardName'>{props.name}</p>
           <h3 className='cardPrix'>${props.price}</h3>
+          <h3 className='cardPrix'>{props.sizes}</h3> 
         </div>
     </div>
   )

@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import ProductsContext from '../Context/CreateContext';
 import Card from './Card';
 import './relatedProducts.css'
+import { useLink } from '../hooks/useLink';
 
 
 function RelatedProducts(props) {
@@ -10,7 +11,7 @@ function RelatedProducts(props) {
     const allProducts = useContext(ProductsContext);
     const category = props.product.category;
     const subCategory = props.product.subCategory;
-    const idProduct = props.product._id
+    const idProduct = props.product.id
 
     // search on related product
     const relatedProducts = allProducts.filter((product)=> 
@@ -18,7 +19,7 @@ function RelatedProducts(props) {
     )
 
     // delete product principale
-    const cleanRelatedProducts = relatedProducts.filter((product)=> product._id !== idProduct)
+    const cleanRelatedProducts = relatedProducts.filter((product)=> product.id !== idProduct)
     // just 4 product
     const FiveRelatedProducts = cleanRelatedProducts.slice(0, 5)
 
@@ -38,8 +39,8 @@ function RelatedProducts(props) {
             
             {FiveRelatedProducts.map((product)=>
                 <Card
-                key={product._id}
-                image={product.image[0]}
+                key={product.id}
+                image={useLink+product.image1}
                 price={product.price}
                 name={product.name}
                 onClick={()=> {handleClickNavigate(product)}}

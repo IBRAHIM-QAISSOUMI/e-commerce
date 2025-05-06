@@ -12,7 +12,7 @@ import PlaceOrder from './pages/placeOrder';
 import NotFound from './pages/NotFound';
 import Navbar from './components/Navbar';
 import ProductsContext from './Context/CreateContext';
-import {products} from './assets/frontend_assets/assets'
+// import {products} from './assets/frontend_assets/assets'
 import Footer from './components/Footer';
 import Help from './components/Help';
 import Singup from './pages/Singup';
@@ -21,6 +21,7 @@ import AdminLayout from './admin panel/AdminLayout';
 import AddItemsAdmin from './admin panel/AddItemsAdmin';
 import ListItemsAdmin from './admin panel/ListItemsAdmin';
 import OrdersAdmin from './admin panel/OrdersAdmin';
+import useProducts from './hooks/useProducts';
 
 function App() {
   const location = useLocation();
@@ -30,14 +31,15 @@ function App() {
   const showFooter = location.pathname !== '/notfound' && location.pathname !=='/help' && location.pathname !=='/adminPanel' && location.pathname !=='/addItems' && location.pathname !=='/listItems' && location.pathname !=='/ordersAdmin';
 
   // api des produits
-  const [data ,setDate] = useState([])
+  // const [data ,setDate] = useState([])
   
-    useEffect(()=> {
-      setDate(products)
-    }, [products])
+  //   useEffect(()=> {
+  //     setDate(products)
+  //   }, [products])
+  const products = useProducts()
 
   return (
-    <ProductsContext value={products}>
+    <ProductsContext.Provider value={products}>
       {showNavbar && <Navbar />}
       <Routes>
         <Route path="*" element={<NotFound />} />
@@ -60,7 +62,7 @@ function App() {
         <Route path="ordersAdmin" element={<OrdersAdmin/>}/>
       </Routes>
       {showFooter && <Footer/>} 
-    </ProductsContext>
+    </ProductsContext.Provider>
   );
 }
 

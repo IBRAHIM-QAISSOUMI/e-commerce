@@ -1,50 +1,79 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import useUser from '../hooks/useUser';
-import './Cart.css'
+import axiosClient from '../components/axiosClient';
+import { useLink } from '../hooks/useLink';
+import { assets } from '../assets/frontend_assets/assets';
+import './Cart.css';
+import CartTotals from '../components/CartTotals';
 
 export default function Cart() {
   const [cartProducts, setCartProducts] = useState([]);
-  const user = useUser()
-  
+  const [cartTotals, setCartTotals] = useState(null);
+  const navigate = useNavigate();
+  const shipping = 10;
+  const user = useUser();
+  const token = localStorage.getItem('token');
 
+  // Get cart from the server
+  const getCart = async () => {
+    try {
+      const response = await axiosClient.get('/api/cart');
+      const data = response.data;
+      setCartProducts(data.cart);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
-    // const getUser = async () => {
-    //   const {data} = useUser();
-    //   if (data) {
-    //       setUserData(data)
-    //   }
-    // }
-  
-    // useEffect(async() => {
-    //   getUser()
-    // }, []);
+  // Handle quantity change for a product
+  const handleQuantityChange = (e, index) => {
+    const newCart = [...cartProducts];
+    const newQuantity = parseInt(e.target.value, 10);
 
+    if (!isNaN(newQuantity) && newQuantity >= 1) {
+      newCart[index].quantity = newQuantity;
+      setCartProducts(newCart);
+    }
+  };
+
+  // Delete product from cart and get updated cart
+  const handleDelete = async (idCart) => {
+    const validate = confirm('Are you sure?');
+    if (validate) {
+      try {
+        await axiosClient.post(`/api/cart/delete/${idCart}`);
+        // Refetch the cart after deletion to get the updated list
+        getCart();
+      } catch (error) {
+        console.log(error);
+      }
+    }
+  };
+
+  // Calculate cart totals
+  const getCartTotals = () => {
+    const total = cartProducts.reduce((acc, item) => {
+      return acc + item.product.price * item.quantity;
+    }, 0);
+    setCartTotals(total + shipping);
+  };
+
+  // Go to the checkout page
+  const handleClickCheckout = () => {
+    navigate('/placeOrder', { state: cartTotals });
+  };
+
+  // Fetch cart and totals when the component mounts or cartProducts change
   useEffect(() => {
-    const storedCart = JSON.parse(localStorage.getItem('cart')) || [];
-    setCartProducts(storedCart);
+    getCart();
   }, []);
 
-  const handleQuantityChange = (index, value) => {
-    const updatedCart = [...cartProducts];
-    updatedCart[index].quantity = parseInt(value) || 1;
-    setCartProducts(updatedCart);
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
-  };
+  useEffect(() => {
+    getCartTotals();
+  }, [cartProducts]);
 
-  const handleDelete = (index) => {
-    const updatedCart = cartProducts.filter((_, i) => i !== index);
-    setCartProducts(updatedCart);
-    localStorage.setItem('cart', JSON.stringify(updatedCart));
-  };
-
-  const calculateTotal = () => {
-    return cartProducts.reduce((acc, product) => {
-      const quantity = product.quantity || 1;
-      return acc + product.price * quantity;
-    }, 0);
-  };
-
-  console.log(user);
+  console.log(token);
   
 
   return (
@@ -55,33 +84,47 @@ export default function Cart() {
       ) : (
         <>
           <div className="cart-items">
-            {cartProducts.map((product, index) => (
+            {cartProducts.map((item, index) => (
               <div key={index} className="cart-item">
-                <img src={product.image[0]} alt={product.name} />
-                <div className='product-details-cart'>
-                  <div className="cart-info">
-                    <h4>{product.name}</h4>
-                    <p>${product.price}</p>
-                    <p>Size: {product.selectedSize}</p>
-                  </div>
-                  <div className="rang">
-                    <input
-                      type="number"
-                      min="1"
-                      value={product.quantity || 1}
-                      onChange={(e) => handleQuantityChange(index, e.target.value)}
+                <img
+                  className="image-product-cart"
+                  src={useLink + item.product.image1}
+                  alt={item.product.name}
+                />
+                <div className="cart-info">
+                  <p className="title-product-cart">{item.product.name}</p>
+                  <div className="product-details-cart">
+                    <div className="mini-details-product-cart">
+                      <p>${item.product.price}</p>
+                      <span className="size-box-cart">{item.size}</span>
+                    </div>
+                    <div className="rang">
+                      <input
+                        type="number"
+                        min="1"
+                        max="10"
+                        value={item.quantity}
+                        onChange={(e) => handleQuantityChange(e, index)}
+                      />
+                    </div>
+                    <img
+                      className="delete-cart"
+                      src={assets.bin_icon}
+                      alt=""
+                      onClick={() => handleDelete(item.id)}
                     />
-                  </div>
-                  <div className="delete" onClick={() => handleDelete(index)}>
-                    ❌
                   </div>
                 </div>
               </div>
             ))}
           </div>
-
-          <div className="cart-totals">
-            <h3>Total: ${calculateTotal().toFixed(2)}</h3>
+          <div className="parent-cart-totals">
+            <CartTotals
+              name="checkout"
+              cartTotals={cartTotals}
+              shipping={shipping}
+              onClick={handleClickCheckout}
+            />
           </div>
         </>
       )}

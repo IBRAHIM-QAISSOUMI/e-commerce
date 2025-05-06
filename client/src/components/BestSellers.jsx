@@ -2,6 +2,7 @@ import { useContext} from 'react';
 import { useNavigate } from 'react-router-dom';
 import Card from './Card';
 import ProductsContext from '../Context/CreateContext';
+import { useLink } from '../hooks/useLink';
 
 function BestSellers() {
   const navigate = useNavigate()
@@ -21,11 +22,11 @@ function BestSellers() {
       <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae</p>
       <div className="product">
         {products
-          .filter((product) => product.bestseller === true)
+          .filter((product) => product.bestseller === 1)
           .map((product) => (
             <Card
-              key={product._id}
-              image={product.image[0]}
+              key={product.id}
+              image={useLink+product.image1}
               price={product.price}
               name={product.name}
               onClick={()=> {handleClickNavigate(product)}}

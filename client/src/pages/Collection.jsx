@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import ProductsContext from '../Context/CreateContext';
 import Card from '../components/Card';
 import './Collection.css';
+import { useLink } from '../hooks/useLink';
 
 function Collection() {
   const navigate = useNavigate()
@@ -11,6 +12,7 @@ function Collection() {
   const [category, setCategory] = useState([]);
   const [type, setType] = useState([]);
   const [sort, setSort] = useState('');
+
 
   const handleChangeCategory = (e) => {
     if (e.target.checked) {
@@ -120,8 +122,8 @@ function Collection() {
         <div className="cards">
           {products.map((product) =>
             <Card
-              key={product._id}
-              image={product.image[0]}
+              key={product.id}
+              image={useLink+product.image1}
               price={product.price}
               name={product.name}
               onClick={()=> {handleClickNavigate(product)}}

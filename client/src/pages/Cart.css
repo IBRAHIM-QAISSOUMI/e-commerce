@@ -17,27 +17,55 @@
     display: flex;
     gap: 20px;
     border: 1px solid #ddd;
-    padding: 15px;
+    padding: 10px;
     border-radius: 10px;
-    background-color: #fdfdfd;
+    background-color: #f9f9f9;
+    height: 100px;
+    padding-right: 20px;
   }
   
-  .cart-item img {
+  .image-product-cart {
     width: 100px;
     height: 100px;
     object-fit: cover;
   }
+
+  .cart-info {
+    flex: 10;
+    margin-top: -10px;
+  }
+
+  .title-product-cart{
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
   
   .product-details-cart {
+    margin-top: -20px;
     width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
+
+  }
+
+  .mini-details-product-cart {
+    display: flex;
+    align-items: center;
+    gap: 20px;
   }
   
-  .cart-info {
-    flex: 2;
+
+
+  .size-box-cart {
+    border: 1px solid gray;
+    border-radius: 5px;
+    padding: 5px 10px;
+    background-color: white;
+
   }
+
+
   
   .rang input {
     width: 60px;
@@ -45,19 +73,55 @@
     font-size: 16px;
     text-align: center;
   }
-  
-  .delete {
+
+  .delete-cart {
+    height: 23px;
     cursor: pointer;
-    font-size: 20px;
-    color: red;
-    padding: 5px;
   }
+
+  .parent-cart-totals{
+    position: relative;
+    height: 350px;
+  }
+
   
   .cart-totals {
-    text-align: right;
+    position: absolute;
+    right: 0; 
+    top: 0;
+    width: 300px;
     margin-top: 30px;
-    font-size: 20px;
-    font-weight: bold;
     color: #333;
+    padding: 23px;
+  }
+
+  .children-cart-totals {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: -10px 0;
+    border-bottom: 1px solid gray;
   }
   
+  .total {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 1.1rem;
+  }
+
+  .checkout {
+    width: 120px;
+    margin-top: 20px;
+    padding: 10px ;
+    background-color: black;
+    color: white;
+    font-size: 1.1rem;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  .checkout:hover{
+    background-color: #333;
+  }

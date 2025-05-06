@@ -2,6 +2,7 @@
     width: 90%;
     max-width: 1400px;
     margin: auto;
+    /* background-color: green; */
 }
 
 .profile-title {
@@ -10,11 +11,97 @@
 }
 
 .logout {
-    padding: 10px 0;
+    height: 31px;
     background-color: black;
     color: white;
-    width: 100px;
-    font-size: 14px;
     cursor: pointer;
+}
+
+.logout:hover {
+    background-color: #333;
+}
+
+.logout-content {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    justify-content: end;
+    width: 100%;
+}
+
+.orders-content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.orders-title {
+    font-weight: 500;
+    font-size: 1.5rem;
+}
+
+.order-item  {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+}
+
+.order-item img {
+    height: 120px;
+    /* height: auto; */
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.order-info {
+    margin-left: 10px;
+    margin-top: -10px;
+    font-weight: 500;
+}
+
+.left-item {
+    display: flex;
+}
+
+.order-product-details {
+    display: flex;
+    gap: 10px;
+    margin-top: -20px;
+
+}
+
+.center-item p {
+    display: inline;
+}
+
+.status {
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+    background-color: #28a745;
+    display: inline-block;
+    margin-right: 5px;
+}
+
+.button-track-order {
+    padding: 10px 15px;
+    border: none;
+    outline: none;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    border-radius: 2px;
+}
+
+.button-track-order:hover {
+    background-color: #333;
+}
+
+.span-weeky {
+    font-weight: 300;
+    font-size: 13px;
 }
 

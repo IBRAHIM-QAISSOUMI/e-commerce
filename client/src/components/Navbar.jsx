@@ -37,7 +37,7 @@ function Navbar() {
             <Search className='search-icon' size={20} />
             <input className='search-input' type="text" placeholder='Search' />
           </div>
-          <Link><Heart className='icon' size={24} /></Link>
+          {/* <Link><Heart className='icon' size={24} /></Link> */}
           <Link to='/cart'><ShoppingCart className='icon' size={24} /></Link>
           <Link to='/profile'><User className='icon' size={24} /></Link>
         </div>

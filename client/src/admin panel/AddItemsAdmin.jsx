@@ -14,7 +14,8 @@ function AddItemsAdmin() {
   const [category, setCategory] = useState('Men');
   const [subCategory, setSubCategory] = useState('Topwear');
   const [price, setPrice] = useState('');
-  const [selectedSize, setSelectedSize] = useState(null);
+  const [selectedSize, setSelectedSize] = useState([]); 
+
   const [bestSeller, setBestSeller] = useState(false);
   const [imageFiles, setImageFiles] = useState([null, null, null, null]);
   const [errors, setErrors] = useState('')
@@ -58,6 +59,7 @@ function AddItemsAdmin() {
     
     
     formData.append('bestseller', bestSeller ? 1 : 0);
+    console.log('Form Data Here:', formData.get('bestseller'));
 
 
     imageFiles.forEach((file, index) => {
@@ -86,8 +88,7 @@ function AddItemsAdmin() {
     
   };
 
-  console.log(errors);
-  console.log(selectedSize);
+  
   
   
 
@@ -177,13 +178,20 @@ function AddItemsAdmin() {
             <div className="sizes-container">
               {sizes.map((size) => (
                 <button
-                  key={size}
-                  type="button"
-                  className={`size-button ${selectedSize === size ? 'selected' : ''}`}
-                  onClick={() => setSelectedSize(size)}
-                >
-                  {size}
-                </button>
+                key={size}
+                type="button"
+                className={`size-button ${selectedSize.includes(size) ? 'selected' : ''}`}
+                onClick={() => {
+                  if (selectedSize.includes(size)) {
+                    setSelectedSize(selectedSize.filter(s => s !== size)); 
+                  } else {
+                    setSelectedSize([...selectedSize, size]); 
+                  }
+                }}
+              >
+                {size}
+              </button>
+              
               ))}
             </div>
           </div>
@@ -193,7 +201,11 @@ function AddItemsAdmin() {
               type="checkbox"
               id="bestSellers"
               checked={bestSeller}
-              onChange={(e) => setBestSeller(e.target.checked)}
+              onChange={(e) =>{ setBestSeller(e.target.checked);
+                console.log('bestSeller in input check:', e.target.checked)
+              }
+              }
+              
             />
             <label htmlFor="bestSellers">bestSellers</label>
           </div>
