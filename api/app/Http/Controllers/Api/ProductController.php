@@ -36,7 +36,7 @@ class ProductController extends Controller
             'image4' => 'nullable|image|max:10240',
         ]);
     
-        $sizes = json_encode($validated['sizes']);
+        // $sizes = json_encode($validated['sizes']);
     
         $imagePaths = [];
         for ($i = 1; $i <= 4; $i++) {
@@ -44,6 +44,11 @@ class ProductController extends Controller
                 $imagePaths[$i] = $request->file("image{$i}")->store('products', 'public');
             }
         }
+        
+
+        // $validated['bestseller'] = filter_var($validated['bestseller'], FILTER_VALIDATE_BOOLEAN);
+
+        // \Log::info('BestSeller Value Before Storing: ', [$validated['bestseller']]);
     
         $product = Product::create([
             'name' => $validated['name'],
@@ -51,7 +56,7 @@ class ProductController extends Controller
             'category' => $validated['category'],
             'subCategory' => $validated['subCategory'],
             'price' => $validated['price'],
-            'sizes' => $sizes, 
+            'sizes' => $validated['sizes'], 
             'bestseller' => $validated['bestseller'],
             'image1' => $imagePaths[1] ?? null,
             'image2' => $imagePaths[2] ?? null,
@@ -85,6 +90,8 @@ class ProductController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $product = Product::findOrFail($id);
+        $product->delete();
+        return response()->json(['message'=> 'product deleted']);
     }
 }

@@ -14,7 +14,7 @@ class Product extends Model
         'subCategory',
         'price',
         'sizes',
-        'bestSeller',
+        'bestseller',
         'image1',
         'image2',
         'image3',
@@ -30,6 +30,11 @@ class Product extends Model
     public function cartItems()
     {
         return $this->hasMany(Cart::class);
+    }
+
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class);
     }
 
 }
