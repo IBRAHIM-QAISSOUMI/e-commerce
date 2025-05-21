@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Routes, Route, useLocation } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 import About from './pages/About';
 import Home from './pages/home';
 import Contact from './pages/contact';
@@ -22,13 +23,17 @@ import AddItemsAdmin from './admin panel/AddItemsAdmin';
 import ListItemsAdmin from './admin panel/ListItemsAdmin';
 import OrdersAdmin from './admin panel/OrdersAdmin';
 import useProducts from './hooks/useProducts';
+import AdminRoute from './custom Route/AdminRoute';
+
 
 function App() {
   const location = useLocation();
 
   // Navbar
-  const showNavbar = location.pathname !== '/notfound' && location.pathname !=='/help' && location.pathname !=='/adminPanel' && location.pathname !=='/addItems' && location.pathname !=='/listItems' && location.pathname !=='/ordersAdmin';
-  const showFooter = location.pathname !== '/notfound' && location.pathname !=='/help' && location.pathname !=='/adminPanel' && location.pathname !=='/addItems' && location.pathname !=='/listItems' && location.pathname !=='/ordersAdmin';
+  const isAdminPath = location.pathname.startsWith('/admin');
+
+const showNavbar = !['/notfound', '/help'].includes(location.pathname) && !isAdminPath;
+const showFooter = !['/notfound', '/help'].includes(location.pathname) && !isAdminPath;
 
   // api des produits
   // const [data ,setDate] = useState([])
@@ -56,12 +61,22 @@ function App() {
         <Route path="placeOrder" element={<PlaceOrder />} />
         <Route path="help" element={<Help/>} />
         <Route path="NotFound" element={<NotFound/>} />
-        <Route path="adminPanel" element={<AddItemsAdmin/>}/>
-        <Route path="addItems" element={<AddItemsAdmin/>}/>
-        <Route path="listItems" element={<ListItemsAdmin/>}/>
-        <Route path="ordersAdmin" element={<OrdersAdmin/>}/>
+        <Route path="admin"
+          element={
+            <AdminRoute>
+              <AdminLayout />
+            </AdminRoute>
+          }
+        >
+  <Route index element={<AddItemsAdmin />} />
+  <Route path="addItems" element={<AddItemsAdmin />} />
+  <Route path="listItems" element={<ListItemsAdmin />} />
+  <Route path="orders" element={<OrdersAdmin />} />
+</Route>
+
       </Routes>
-      {showFooter && <Footer/>} 
+      <ToastContainer />
+      {showFooter && <Footer/>}
     </ProductsContext.Provider>
   );
 }

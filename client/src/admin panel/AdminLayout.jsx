@@ -1,21 +1,22 @@
-import React from 'react'
-import TopbarAdmin from './TopbarAdmin'
-import SideRightAdmin from './SideRightAdmin'
-import './AdminLayout.css'
-import AddItemsAdmin from './AddItemsAdmin'
+import React from 'react';
+import TopbarAdmin from './TopbarAdmin';
+import SideRightAdmin from './SideRightAdmin';
+import './AdminLayout.css';
+import { Outlet } from 'react-router-dom';
 
-function AdminLayout({ children }) {
+function AdminLayout() {
   return (
     <div className="admin-panel-content">
       <TopbarAdmin />
       <div className="admin-main-content">
         <SideRightAdmin />
         <div className="admin-page-content">
-          {children || <AddItemsAdmin/>}
+          <Outlet />
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default AdminLayout
+export default AdminLayout;
+

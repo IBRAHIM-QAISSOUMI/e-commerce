@@ -72,6 +72,7 @@ export default function Cart() {
   useEffect(() => {
     getCartTotals();
   }, [cartProducts]);
+  
 
   console.log(token);
   

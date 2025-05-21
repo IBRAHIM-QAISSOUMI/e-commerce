@@ -2,6 +2,7 @@ import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import axiosClient from '../components/axiosClient'
+import { toast } from 'react-toastify';
 
 
 function Singup() {
@@ -24,7 +25,7 @@ function Singup() {
           password,
         });
         const message = response.data.message
-        alert(message)
+        toast.success(message)
         window.location.href = '/login';
         }catch (error) {
           if (error.response && error.response.status === 422) {

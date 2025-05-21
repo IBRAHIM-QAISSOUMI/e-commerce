@@ -4,6 +4,8 @@ import './Product.css';
 import RelatedProducts from '../components/RelatedProducts';
 import { useLink } from '../hooks/useLink';
 import axiosClient from '../components/axiosClient';
+import { toast } from 'react-toastify';
+
 import useUser from '../hooks/useUser';
 
 export default function Product() {
@@ -15,7 +17,7 @@ export default function Product() {
   const parsedSizes = JSON.parse(product.sizes);
 
   const [image, setImage] = useState(useLink+product.image1)
-  console.log(selectedSize)
+
   
   useEffect(()=> {
     setProduct(state)
@@ -57,25 +59,32 @@ export default function Product() {
   // send product to cart shopping
   const handleClickAddToCart = async () => {
     if (selectedSize === null) {
-          alert('champ size obligatoire') 
-    } else {
-      const userAuth = await getUser()
-      console.log(userAuth.id);
-      try {
-        await axiosClient.post('/api/cart/add', {
-          user_id: userAuth.id,
-          product_id: product.id,
-          quantity: 1,
-          size: selectedSize,
-        });
-        navigate('/cart')
-      } catch (error) {
-        console.error(error);
-      }
-      
-
+      toast.warn('Size is required!');
+      return;
     }
-  }
+
+
+  
+    const userAuth = await getUser();
+      await axiosClient.post('/api/cart/add', {
+        user_id: userAuth.id,
+        product_id: product.id,
+        quantity: 1,
+        size: selectedSize,
+      });
+      toast.success('Product added to cart successfully!');
+
+  
+  
+
+  };
+  const token = localStorage.getItem('token');
+  const user = JSON.parse(localStorage.getItem('user'));
+
+  console.log(token);
+  console.log(user);
+  
+  
 
   return (
     <div className='product-page'>

@@ -1,0 +1,47 @@
+.orders-admin-page {
+    font-weight: 300;
+    font-size: 14px;
+}
+
+.order-page-title {
+    font-weight: 300;
+}
+ .orders-admin {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    margin: 0 40px;
+ }
+
+ .img-order-content {
+    width: 100px;
+ }
+
+ .order-item-admin {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px;
+    border: 1px solid #eee;
+    background-color: #eee;
+    width: 100%;
+ }
+
+ .left-side-order-admin {
+    margin-left: -50px;
+ }
+
+ .orders-info {
+    display: flex;
+    gap: 50px;
+    line-height: 10px
+ }
+
+ .status-order-admin-two select{
+    padding: 5px 10px;
+    font-weight: 500;
+    font-size: 15px;
+ }
+ 
+ .name-useer {
+    margin-top: 70px;
+ }

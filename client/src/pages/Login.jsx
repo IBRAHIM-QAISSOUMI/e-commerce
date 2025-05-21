@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import axiosClient from '../components/axiosClient';
 import './login.css';
@@ -25,14 +26,17 @@ function Login() {
       });
 
       const token = response.data.token;
+      const user = response.data.user;
+
       localStorage.setItem('token', token);
-      alert('Login successful!');
+      localStorage.setItem('user', JSON.stringify(user));
+      toast.success('Login successful!');
       window.location.href = '/profile';
     } catch (error) {
       if (error.response && error.response.status === 422) {
         setErrors(error.response.data.errors);
       } else {
-        alert('email or password incorrect');
+        toast.error('email or password incorrect');
       }
     }
   };

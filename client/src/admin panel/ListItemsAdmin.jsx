@@ -1,11 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react'
-import axios from 'axios'
-import AdminLayout from './AdminLayout'
-import Card from '../components/Card'
-import useProducts from '../hooks/useProducts'
 import {useLink} from '../hooks/useLink'
-import ProductsContext from '../Context/CreateContext'
 import { assets } from '../assets/frontend_assets/assets'
+import { toast } from 'react-toastify';
 import axiosClient from '../components/axiosClient'
 import './ListItemsAdmin.css'
 
@@ -38,6 +34,7 @@ function ListItemsAdmin() {
     if(validate) {
       try {
         const responst = await axiosClient.delete(`/api/products/${idProduct}`)
+        toast.error('product deleted')
       } catch (error) {
         console.log(error);
         
@@ -47,7 +44,7 @@ function ListItemsAdmin() {
   
 
   return (
-    <AdminLayout>
+    <>
     <div className="list-item-content">
       <h3>All Products List</h3>
       <table className="table">
@@ -74,7 +71,7 @@ function ListItemsAdmin() {
         </tbody>
       </table>
     </div>
-    </AdminLayout>
+    </>
   )
 }
 

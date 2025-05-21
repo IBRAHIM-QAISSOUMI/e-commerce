@@ -1,8 +1,8 @@
 import React, { useRef, useState } from 'react';
-import AdminLayout from './AdminLayout';
 import './AddItemsAdmin.css';
 import { assets } from '../assets/admin_assets/assets';
 import axiosClient from '../components/axiosClient';
+import { toast } from 'react-toastify';
 
 function AddItemsAdmin() {
   const Upload_area = assets.upload_area;
@@ -74,10 +74,10 @@ function AddItemsAdmin() {
           'Content-Type': 'multipart/form-data',
         },
       });
-      alert('Product added successfully');
+      toast.success('Product added successfully');
     } catch (err) {
       setErrors(err.response.data.errors)
-      alert('error');
+      toast.error('error');
     }
     for (let pair of formData.entries()) {
       console.log(pair[0]+ ': ' + pair[1]);
@@ -93,7 +93,7 @@ function AddItemsAdmin() {
   
 
   return (
-    <AdminLayout>
+
       <div className="add-items-content">
         <form onSubmit={handleSubmit}>
           <div className='add-image-content'>
@@ -213,7 +213,7 @@ function AddItemsAdmin() {
           <button  type="submit" className='Add-product'>Add</button>
         </form>
       </div>
-    </AdminLayout>
+
   );
 }
 

@@ -7,6 +7,7 @@ import { Heart, ShoppingCart, User, Search, Menu } from 'lucide-react';
 function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
   const logo = assets.logo;
+  const user = JSON.parse(localStorage.getItem('user'));
 
   return (
     <div className="topBar">
@@ -29,6 +30,9 @@ function Navbar() {
             <li className="link"><Link to="Collection">Collection</Link></li>
             <li className="link"><Link to="About">About</Link></li>
             <li className="link"><Link to="Contact">Contact</Link></li>
+            {user.role === 'admin' && (
+              <li className="link admin-panel-link"><Link to="/admin">Admin Panel</Link></li>
+            )}
           </ul>
         </div>
 
@@ -37,7 +41,6 @@ function Navbar() {
             <Search className='search-icon' size={20} />
             <input className='search-input' type="text" placeholder='Search' />
           </div>
-          {/* <Link><Heart className='icon' size={24} /></Link> */}
           <Link to='/cart'><ShoppingCart className='icon' size={24} /></Link>
           <Link to='/profile'><User className='icon' size={24} /></Link>
         </div>

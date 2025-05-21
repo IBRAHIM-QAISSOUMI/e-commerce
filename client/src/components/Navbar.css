@@ -2,11 +2,11 @@
   position: sticky;
   top: 0;
   background-color: white;
-  z-index: 10000;
   width: 90%;
   max-width: 1400px;
   padding: 10px 20px;
   margin: auto;
+  z-index: 1;
 }
 
 .mobileHeader {
@@ -107,6 +107,13 @@
 .icon:hover {
   color: #f0a1d8;
   transform: scale(1.1);
+}
+
+.admin-panel-link {
+  margin-top: -10px;
+  padding: 10px;
+  border-radius: 15px;
+  border: 1px pink solid;
 }
 
 @media (max-width: 900px){

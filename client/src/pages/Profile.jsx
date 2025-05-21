@@ -3,6 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import axiosClient from '../components/axiosClient';
 import { useLink } from '../hooks/useLink';
 import { LogOut } from 'lucide-react';
+import Swal from 'sweetalert2';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 import './Profile.css';
@@ -26,6 +29,9 @@ function Profile() {
     }
   }
 
+  console.log(orders);
+  
+
 
 
   // logout
@@ -35,7 +41,7 @@ function Profile() {
       localStorage.removeItem('token');
       navigate('/login');
     } catch (error) {
-      console.log('Logout failed', error);
+      console.log('Logout failed', error); 
     }
   };
 
@@ -44,15 +50,50 @@ function Profile() {
     getOrders()
   }, [])
 
-  // if (!user) {
-  //   return <p>Loading profile...</p>;
-  // }
 
-  console.log(user)
+  // test sweetalert here
+  const handleClick = () => {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
+      }
+    });
+  }
+
+  console.log(user);
+
+
+  // test toast here
+
+
+  const showSuccess = () => toast.success("تم بنجاح!");
+  const showError = () => toast.error("حدث خطأ!");
+  const showWarning = () => toast.warn("تحذير!");
+  const showInfo = () => toast.info("هذه معلومة!");
+  const showDefault = () => toast("رسالة عادية");
+  
+
+  
 
   return (
     <div className='profile-content'>
       <div className='logout-content'>
+      {/* <div>
+      <button onClick={showSuccess}>نجاح</button>
+      <button onClick={showError}>خطأ</button>
+      <button onClick={showWarning}>تحذير</button>
+      <button onClick={showInfo}>معلومة</button>
+      <button onClick={showDefault}>عادية</button>
+      
+    </div> */}
           <p>Welcome {user?.name || '...'}</p>
           <button className='logout' onClick={logout}> <LogOut size={24} /></button>
       </div>
